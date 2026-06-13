@@ -3,6 +3,59 @@ from services.gemini import ask_gemini
 
 def advisor_agent(state):
 
+    tasks = state.get(
+        "plan",
+        {}
+    ).get(
+        "tasks",
+        []
+    )
+
+    research_data = state.get(
+        "research_data",
+        {}
+    )
+
+    inventory_data = state.get(
+        "inventory_data",
+        {}
+    )
+
+    pricing_data = state.get(
+        "pricing_data",
+        {}
+    )
+
+    recommendation = state.get(
+        "recommendation",
+        {}
+    )
+
+    listing_data = state.get(
+        "listing_data",
+        {}
+    )
+
+    marketing_data = state.get(
+        "marketing_data",
+        {}
+    )
+
+    analytics_data = state.get(
+        "analytics_data",
+        {}
+    )
+
+    simulation_data = state.get(
+        "simulation_data",
+        {}
+    )
+
+    festival_data = state.get(
+        "festival_data",
+        {}
+    )
+
     prompt = f"""
 
 You are an expert business consultant.
@@ -10,41 +63,60 @@ You are an expert business consultant.
 Goal:
 {state['goal']}
 
+Executed Agents:
+{tasks}
+
 Research Data:
-{state['research_data']}
+{research_data}
 
 Inventory Data:
-{state['inventory_data']}
+{inventory_data}
+
+Analytics Data:
+{analytics_data}
 
 Pricing Data:
-{state['pricing_data']}
+{pricing_data}
 
 Recommendation:
-{state['recommendation']}
+{recommendation}
 
 Listing Data:
-{state['listing_data']}
+{listing_data}
 
 Marketing Data:
-{state['marketing_data']}
+{marketing_data}
 
-Generate:
+Simulation Data:
+{simulation_data}
 
-1. Business Summary
+Festival Data:
+{festival_data}
 
-2. Pricing Strategy
+Generate a detailed report with:
 
-3. Inventory Strategy
+1. Executive Summary
 
-4. Listing Strategy
+2. Business Insights
 
-5. Marketing Strategy
+3. Pricing Strategy
 
-6. Risks
+4. Inventory Strategy
 
-7. Expected Impact
+5. Listing Strategy
 
-Keep the response professional, actionable, and suitable for a small ecommerce seller.
+6. Marketing Strategy
+
+7. Risks
+
+8. Growth Opportunities
+
+9. Expected Impact
+
+Important:
+Only use the data that is available.
+Do not mention missing data.
+Keep the report professional and actionable.
 
 """
 

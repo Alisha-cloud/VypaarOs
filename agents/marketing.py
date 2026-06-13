@@ -1,33 +1,55 @@
-from services.gemini import ask_gemini
-
-
 def marketing_agent(state):
 
-    prompt = f"""
-Create a marketing campaign.
+    if "marketing" not in state["plan"]["tasks"]:
+        return state
 
-Product:
-{state['research_data']['top_trending']}
+    # Safe defaults
 
-Recommended Price:
-₹{state['pricing_data']['recommended_price']}
+    product = "Floral Kurti"
+    price = 799
 
-Generate:
+    # Use research output if available
 
-1. Campaign Name
-2. Instagram Caption
-3. WhatsApp Message
-4. Festival Offer
+    if "research_data" in state:
+        product = state[
+            "research_data"
+        ]["top_trending"]
 
-Keep it concise.
-"""
+    # Use pricing output if available
 
-    marketing_content = ask_gemini(
-        prompt
-    )
+    if "pricing_data" in state:
+        price = state[
+            "pricing_data"
+        ]["recommended_price"]
 
     state["marketing_data"] = {
-        "content": marketing_content
+
+        "campaign_name":
+        f"{product} Festival Sale",
+
+        "instagram_caption":
+        f"""
+✨ Trending Now: {product}
+
+Upgrade your wardrobe with our latest collection.
+
+Starting at just ₹{price}
+
+#KurtiFashion #EthnicWear #FestivalFashion
+""",
+
+        "whatsapp_message":
+        f"""
+🔥 Special Offer Alert 🔥
+
+{product} now available at ₹{price}
+
+Limited stock available.
+Shop now before it's sold out!
+""",
+
+        "festival_offer":
+        "Flat 20% OFF + Free Shipping"
     }
 
     return state

@@ -1,45 +1,114 @@
-from services.gemini import ask_gemini
-import json
-
-
 def planner_agent(state):
 
-    goal = state["goal"]
+    goal = state["goal"].lower()
 
-    prompt = f"""
-You are an AI planner.
+    # Simulation Goals
 
-Goal:
-{goal}
+    if (
+        "what if" in goal
+        or "reduce price" in goal
+        or "price by" in goal
+        or "forecast" in goal
+        or "simulation" in goal
+    ):
 
-Available Agents:
+        state["plan"] = {
+            "tasks": [
+                "pricing",
+                "simulation"
+            ]
+        }
 
-- research
-- inventory
-- pricing
-- listing
-- marketing
+    # Listing Goals
 
-Return ONLY valid JSON.
+    elif (
+        "listing" in goal
+        or "seo" in goal
+        or "product description" in goal
+    ):
 
-Example:
+        state["plan"] = {
+            "tasks": [
+                "listing"
+            ]
+        }
 
-{{
-    "tasks": [
-        "research",
-        "inventory",
-        "pricing",
-        "marketing"
-    ]
-}}
-"""
+    # Marketing Goals
 
-    response = ask_gemini(prompt)
+    elif (
+        "marketing" in goal
+        or "campaign" in goal
+        or "instagram" in goal
+        or "whatsapp" in goal
+        or "festival" in goal
+    ):
 
-    try:
-        state["plan"] = json.loads(response)
+        state["plan"] = {
+            "tasks": [
+                "marketing"
+            ]
+        }
 
-    except:
+    # Pricing Goals
+
+    elif (
+        "pricing" in goal
+        or "price" in goal
+        or "profit" in goal
+    ):
+
+        state["plan"] = {
+            "tasks": [
+                "research",
+                "inventory",
+                "pricing"
+            ]
+        }
+
+    # Inventory Goals
+
+    elif (
+        "inventory" in goal
+        or "stock" in goal
+    ):
+
+        state["plan"] = {
+            "tasks": [
+                "inventory"
+            ]
+        }
+
+    elif (
+        "raksha bandhan" in goal
+        or "diwali" in goal
+        or "navratri" in goal
+        or "eid" in goal
+        or "onam" in goal
+        or "pongal" in goal
+    ):
+        state["plan"] = {
+            "tasks": [
+                "festival",
+                "marketing"
+            ]
+        }
+
+    elif (
+        "marketing" in goal
+        or "campaign" in goal
+        or "instagram" in goal
+        or "whatsapp" in goal
+    ):
+        state["plan"] = {
+            "tasks": [
+                "marketing"
+            ]
+        }
+
+    # Business Growth Goals
+
+    else:
+
         state["plan"] = {
             "tasks": [
                 "research",

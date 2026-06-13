@@ -1,12 +1,24 @@
 def recommendation_agent(state):
 
-    trending = state[
-        "research_data"
-    ]["top_trending"]
+    if (
+        "research" not in state["plan"]["tasks"]
+        and
+        "pricing" not in state["plan"]["tasks"]
+    ):
+        return state
 
-    price = state[
-        "pricing_data"
-    ]["recommended_price"]
+    trending = "Floral Kurti"
+    price = 799
+
+    if "research_data" in state:
+        trending = state[
+            "research_data"
+        ]["top_trending"]
+
+    if "pricing_data" in state:
+        price = state[
+            "pricing_data"
+        ]["recommended_price"]
 
     state["recommendation"] = {
 

@@ -3,6 +3,9 @@ import pandas as pd
 
 def pricing_agent(state):
 
+    if "pricing" not in state["plan"]["tasks"]:
+        return state
+
     df = pd.read_csv(
         "data/sales.csv"
     )

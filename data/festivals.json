@@ -1,0 +1,61 @@
+[
+    {
+        "festival": "Raksha Bandhan",
+        "month": 8,
+        "recommended_products": [
+            "Floral Kurti",
+            "Cotton Kurti"
+        ],
+        "marketing_theme": "Sibling Celebration"
+    },
+
+    {
+        "festival": "Diwali",
+        "month": 10,
+        "recommended_products": [
+            "Anarkali Kurti",
+            "Festive Wear",
+            "Designer Kurti"
+        ],
+        "marketing_theme": "Festive Fashion"
+    },
+
+    {
+        "festival": "Navratri",
+        "month": 9,
+        "recommended_products": [
+            "Traditional Kurti",
+            "Ethnic Wear"
+        ],
+        "marketing_theme": "Traditional Celebration"
+    },
+
+    {
+        "festival": "Eid",
+        "month": 3,
+        "recommended_products": [
+            "Elegant Kurti",
+            "Premium Kurti"
+        ],
+        "marketing_theme": "Festive Elegance"
+    },
+
+    {
+        "festival": "Pongal",
+        "month": 1,
+        "recommended_products": [
+            "Cotton Kurti"
+        ],
+        "marketing_theme": "Traditional Comfort"
+    },
+
+    {
+        "festival": "Onam",
+        "month": 8,
+        "recommended_products": [
+            "Traditional Kurti",
+            "Cotton Kurti"
+        ],
+        "marketing_theme": "Cultural Celebration"
+    }
+]

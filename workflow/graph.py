@@ -13,6 +13,9 @@ from agents.listing import listing_agent
 from agents.marketing import marketing_agent
 from agents.advisor import advisor_agent
 from agents.planner import planner_agent
+from agents.analytics import analytics_agent
+from agents.simulation import simulation_agent
+from agents.festival import festival_agent
 
 
 builder = StateGraph(
@@ -60,6 +63,21 @@ builder.add_node(
     "planner",
     planner_agent
 )
+
+builder.add_node(
+    "analytics",
+    analytics_agent
+)
+
+builder.add_node(
+    "simulation",
+    simulation_agent
+)
+
+builder.add_node(
+    "festival",
+    festival_agent
+)
 # Entry Point
 
 builder.set_entry_point(
@@ -80,11 +98,21 @@ builder.add_edge(
 
 builder.add_edge(
     "inventory",
+    "analytics"
+)
+
+builder.add_edge(
+    "analytics",
     "pricing"
 )
 
 builder.add_edge(
     "pricing",
+    "simulation"
+)
+
+builder.add_edge(
+    "simulation",
     "recommendation"
 )
 
@@ -100,6 +128,11 @@ builder.add_edge(
 
 builder.add_edge(
     "marketing",
+    "festival"
+)
+
+builder.add_edge(
+    "festival",
     "advisor"
 )
 

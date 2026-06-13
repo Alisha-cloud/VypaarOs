@@ -3,6 +3,11 @@ import json
 
 def research_agent(state):
 
+    if "research" not in state["plan"]["tasks"]:
+        return state
+
+    # existing code below
+
     with open(
         "data/market_data.json"
     ) as file:

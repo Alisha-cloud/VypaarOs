@@ -1,35 +1,41 @@
-from services.gemini import ask_gemini
-
-
 def listing_agent(state):
 
-    product = state[
-        "research_data"
-    ]["top_trending"]
+    if "listing" not in state["plan"]["tasks"]:
+        return state
 
-    prompt = f"""
-Create an ecommerce listing.
+    # Try getting product from research
 
-Product:
-{product}
+    if "research_data" in state:
 
-Generate:
+        product = state[
+            "research_data"
+        ]["top_trending"]
 
-1. English Title
+    else:
 
-2. Hindi Title
-
-3. Product Description
-
-4. SEO Keywords
-
-Return in structured format.
-"""
-
-    listing = ask_gemini(prompt)
+        product = "Floral Kurti"
 
     state["listing_data"] = {
-        "content": listing
+
+        "english_title":
+        f"Premium {product} for Women",
+
+        "hindi_title":
+        f"महिलाओं के लिए प्रीमियम {product}",
+
+        "description":
+        f"""
+Discover our latest {product}.
+Designed for comfort and style.
+Perfect for festive and casual wear.
+""",
+
+        "seo_keywords": [
+            product,
+            "Women Kurti",
+            "Ethnic Wear",
+            "Festival Fashion"
+        ]
     }
 
     return state

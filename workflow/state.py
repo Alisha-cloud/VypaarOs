@@ -24,5 +24,11 @@ class BusinessState(TypedDict, total=False):
 
     listing_data: dict
 
+    analytics_data: dict
+
+    simulation_data: dict
+
+    festival_data: dict
+
     # Final Report
     advisor_report: str

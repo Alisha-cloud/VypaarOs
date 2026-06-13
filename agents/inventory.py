@@ -1,7 +1,10 @@
 import pandas as pd
 
-
 def inventory_agent(state):
+
+    if "inventory" not in state["plan"]["tasks"]:
+        return state
+
 
     df = pd.read_csv(
         "data/inventory.csv"
