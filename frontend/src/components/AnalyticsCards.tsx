@@ -12,6 +12,8 @@ export default function AnalyticsCards({
   return (
     <div className="grid grid-cols-3 gap-4">
 
+        
+
       <div className="p-4 border rounded">
         <h3>Revenue</h3>
         <p className="text-2xl font-bold">

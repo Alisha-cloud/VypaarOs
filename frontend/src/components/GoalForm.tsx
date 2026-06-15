@@ -7,6 +7,8 @@ import { api } from "@/lib/api";
 import AnalyticsCards from "@/components/AnalyticsCards";
 import AgentFlow from "@/components/AgentFlow";
 import ResultsPanel from "@/components/ResultsPanel";
+import SimulationCard from "@/components/SimulationCard";
+import FileUpload from "@/components/FileUpload";
 
 export default function GoalForm() {
   const [goal, setGoal] = useState("");
@@ -37,6 +39,8 @@ export default function GoalForm() {
   return (
     <div className="space-y-8">
 
+        <FileUpload />
+
       {/* Goal Input */}
 
       <div className="space-y-4">
@@ -61,6 +65,25 @@ export default function GoalForm() {
 
       </div>
 
+
+      {/* Goal Card */}
+
+{result?.goal && (
+
+  <div className="border rounded p-5">
+
+    <h3 className="text-sm text-gray-400">
+      Goal
+    </h3>
+
+    <p className="text-xl font-semibold">
+      {result.goal}
+    </p>
+
+  </div>
+
+)}
+
       {/* Analytics */}
 
       {result?.analytics_data && (
@@ -72,6 +95,16 @@ export default function GoalForm() {
         />
 
       )}
+
+      {result?.simulation_data && (
+
+  <SimulationCard
+    simulation={
+      result.simulation_data
+    }
+  />
+
+)}
 
       {/* Agent Flow */}
 

@@ -13,6 +13,9 @@ export default function Home() {
       </p>
 
       <GoalForm />
+      
+      
     </main>
+    
   );
 }

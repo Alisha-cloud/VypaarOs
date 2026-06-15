@@ -4,6 +4,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from workflow.graph import workflow
 from schemas.request import GoalRequest
 
+from routes.upload import (
+    router as upload_router
+)
+
 
 app = FastAPI(
     title="VyapaarOS",
@@ -21,6 +25,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(
+    upload_router
+)
 
 @app.get("/")
 def home():
