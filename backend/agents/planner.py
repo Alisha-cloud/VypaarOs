@@ -105,6 +105,18 @@ def planner_agent(state):
             ]
         }
 
+    elif (
+        "competitor" in goal
+        or "competition" in goal
+        or "market share" in goal
+    ):
+
+        state["plan"] = {
+            "tasks": [
+                "competitor"
+            ]
+        }    
+
     # Business Growth Goals
 
     else:

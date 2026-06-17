@@ -9,6 +9,12 @@ import AgentFlow from "@/components/AgentFlow";
 import ResultsPanel from "@/components/ResultsPanel";
 import SimulationCard from "@/components/SimulationCard";
 import FileUpload from "@/components/FileUpload";
+import KnowledgePanel from "@/components/KnowledgePanel";
+import RevenueChart from "@/components/RevenueChart";
+import Copilot from "@/components/Copilot";
+import ForecastCard
+from "@/components/ForecastCard";
+import CompetitorCard from "@/components/CompetitorCard";
 
 export default function GoalForm() {
   const [goal, setGoal] = useState("");
@@ -37,7 +43,7 @@ export default function GoalForm() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-6xl mx-auto">
 
         <FileUpload />
 
@@ -96,6 +102,36 @@ export default function GoalForm() {
 
       )}
 
+      {result?.analytics_data && (
+
+  <RevenueChart
+    analytics={
+      result.analytics_data
+    }
+  />
+
+)}
+
+{result?.forecast_data && (
+
+  <ForecastCard
+    forecast={
+      result.forecast_data
+    }
+  />
+
+)}
+
+{result?.competitor_data && (
+
+  <CompetitorCard
+    competitor={
+      result.competitor_data
+    }
+  />
+
+)}
+
       {result?.simulation_data && (
 
   <SimulationCard
@@ -105,6 +141,8 @@ export default function GoalForm() {
   />
 
 )}
+
+
 
       {/* Agent Flow */}
 
@@ -118,6 +156,16 @@ export default function GoalForm() {
 
       )}
 
+       {result?.knowledge?.length > 0 && (
+
+  <KnowledgePanel
+    knowledge={
+      result.knowledge
+    }
+  />
+
+)}
+
       {/* Advisor Report */}
 
       {result?.advisor_report && (
@@ -127,8 +175,10 @@ export default function GoalForm() {
             result.advisor_report
           }
         />
+        
 
       )}
+      <Copilot />
 
     </div>
   );

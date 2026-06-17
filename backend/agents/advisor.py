@@ -203,17 +203,16 @@ def advisor_agent(state):
     knowledge = search_documents(
         state["goal"]
     )
+    
 
-    print(
-        "Retrieved Knowledge:",
-        knowledge
-    )
+    print("Retrieved Knowledge:")
+    print(knowledge)
 
     if not knowledge:
         knowledge = [
             "No external business knowledge available."
         ]
-
+    state["knowledge"] = knowledge
     prompt = f"""
 You are an expert business consultant.
 

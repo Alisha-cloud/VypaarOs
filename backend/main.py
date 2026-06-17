@@ -7,6 +7,12 @@ from schemas.request import GoalRequest
 from routes.upload import (
     router as upload_router
 )
+from routes.chat import (
+    router as chat_router
+)
+from routes.export import (
+    router as export_router
+)
 
 
 app = FastAPI(
@@ -27,6 +33,13 @@ app.add_middleware(
 
 app.include_router(
     upload_router
+)
+
+app.include_router(
+    chat_router
+)
+app.include_router(
+    export_router
 )
 
 @app.get("/")

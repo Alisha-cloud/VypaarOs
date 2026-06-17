@@ -34,12 +34,17 @@ def add_documents(texts):
     documents.extend(
         texts
     )
+    print("UPLOAD")
+    print("Documents count:", len(documents))
 
 
 def search_documents(
     query,
     top_k=3
 ):
+
+    if len(documents) == 0:
+        return []
 
     query_embedding = model.encode(
         [query]
@@ -50,14 +55,22 @@ def search_documents(
             query_embedding,
             dtype=np.float32
         ),
-        top_k
+        min(
+            top_k,
+            len(documents)
+        )
     )
-
+    print("SEARCH")
+    print("Documents count:", len(documents))
     results = []
 
     for idx in indices[0]:
 
-        if idx < len(documents):
+        if (
+            idx >= 0
+            and idx < len(documents)
+        ):
+
             results.append(
                 documents[idx]
             )
