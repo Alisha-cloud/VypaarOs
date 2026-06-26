@@ -310,6 +310,3 @@ http://localhost:3000
 ---
 
 
-
-
-### ⭐ If you found this project useful, please consider giving it a star.
